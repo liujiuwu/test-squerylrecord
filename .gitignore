@@ -13,3 +13,4 @@ lib_managed*
 *.db
 *~
 out*
+.ensime

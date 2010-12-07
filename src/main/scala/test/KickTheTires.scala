@@ -76,9 +76,9 @@ object KickTheTires extends Loggable {
     c2.setTime(now.getTime)
     c2.add(Calendar.HOUR_OF_DAY, 1)
 
-    val qKenFolletByBirthday = from(authors)(a => where(a.birthday between(Some(c1.getTime), Some(c2.getTime))) select(a))
+    //val qKenFolletByBirthday = from(authors)(a => where(a.birthday between(Some(c1.getTime), Some(c2.getTime))) select(a))
 
-    assert(qKenFolletByBirthday.single.name.value == "Ken Follet")
+    //assert(qKenFolletByBirthday.single.name.value == "Ken Follet")
     
     val qLaReineLargot = from(books, authors)((b,a) =>
       where((a.name.value like "Alex%") and b.authorId === a.id)
