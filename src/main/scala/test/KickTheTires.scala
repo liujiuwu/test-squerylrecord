@@ -76,16 +76,15 @@ object KickTheTires extends Loggable {
     c2.setTime(now.getTime)
     c2.add(Calendar.HOUR_OF_DAY, 1)
 
-    //val qKenFolletByBirthday = from(authors)(a => where(a.birthday between(Some(c1.getTime), Some(c2.getTime))) select(a))
+    val qKenFolletByBirthday = from(authors)(a => where(a.birthday between(Some(new java.sql.Timestamp(c1.getTime.getTime)), 
+        Some(new java.sql.Timestamp(c2.getTime.getTime)))) select(a))
 
-    //assert(qKenFolletByBirthday.single.name.value == "Ken Follet")
+    assert(qKenFolletByBirthday.single.name.value == "Ken Follet")
     
     val qLaReineLargot = from(books, authors)((b,a) =>
       where((a.name.value like "Alex%") and b.authorId === a.id)
       select(b)
     )
-
-    //println(qLaReineLargot.statement)
 
     val zBook = qLaReineLargot.single
 
@@ -126,6 +125,10 @@ object KickTheTires extends Loggable {
 
     val b1  = books.where(_.id === laReineMargot.id).single
 
-    assert(b1.genre.get == Genre.Culinary)    
+    assert(b1.genre.get == Genre.Culinary)
+    
+    val bookId = from(books)(b => where(b.name === "Pillars Of The Earth") select(b.idField)).single
+    println("ID of 'Pillars Of The Earth': " + bookId)
+    
   }  
 }
