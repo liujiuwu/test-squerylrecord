@@ -127,7 +127,7 @@ object KickTheTires extends Loggable {
 
     assert(b1.genre.get == Genre.Culinary)
     
-    val bookId = from(books)(b => where(b.name === "Pillars Of The Earth") select(b.idField)).single
+    val bookId = from(books)(b => where(b.name === "Pillars Of The Earth") select(b.id)).single
     println("ID of 'Pillars Of The Earth': " + bookId)
     
   }  
